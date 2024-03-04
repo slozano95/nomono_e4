@@ -2,7 +2,6 @@ import logging
 import traceback
 from alpes.seedwork.infraestructura import utils
 from alpes.modulos.compania.infraestructura.schema.v1.eventos import EventoCompaniaCreada
-from alpes.modulos.compania.infraestructura.schema.v1.comandos import ComandoCrearReserva
 
 import pulsar,_pulsar
 from pulsar.schema import *
@@ -28,21 +27,22 @@ def suscribirse_a_eventos():
             cliente.close()
 
 def suscribirse_a_comandos():
-    cliente = None
-    try:
-        cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
-        consumidor = cliente.subscribe('comandos-compania', consumer_type=_pulsar.ConsumerType.Shared, subscription_name='comandos', schema=AvroSchema(ComandoCrearReserva))
-        logging.info('OK: Suscribiendose al tópico de comandos compania!')
-        while True:
-            print(f'Comando compania recibido')
-            mensaje = consumidor.receive()
-            print(f'Comando compania recibido: {mensaje.value().data}')
+    pass
+    # cliente = None
+    # try:
+    #     cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
+    #     consumidor = cliente.subscribe('comandos-compania', consumer_type=_pulsar.ConsumerType.Shared, subscription_name='comandos', schema=AvroSchema(Comando))
+    #     logging.info('OK: Suscribiendose al tópico de comandos compania!')
+    #     while True:
+    #         print(f'Comando compania recibido')
+    #         mensaje = consumidor.receive()
+    #         print(f'Comando compania recibido: {mensaje.value().data}')
 
-            consumidor.acknowledge(mensaje)     
+    #         consumidor.acknowledge(mensaje)     
             
-        cliente.close()
-    except:
-        logging.error('ERROR: Suscribiendose al tópico de comandos compania!')
-        traceback.print_exc()
-        if cliente:
-            cliente.close()
+    #     cliente.close()
+    # except:
+    #     logging.error('ERROR: Suscribiendose al tópico de comandos compania!')
+    #     traceback.print_exc()
+    #     if cliente:
+    #         cliente.close()

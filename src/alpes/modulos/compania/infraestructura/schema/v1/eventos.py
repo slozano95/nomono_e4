@@ -6,12 +6,3 @@ class CompaniaCreadaPayload(Record):
 
 class EventoCompaniaCreada(EventoIntegracion):
     data = CompaniaCreadaPayload()
-    
-class ReservaCreadaPayload(Record):
-    id_reserva = String()
-    id_cliente = String()
-    estado = String()
-    fecha_creacion = Long()
-
-class EventoReservaCreada(EventoIntegracion):
-    data = ReservaCreadaPayload()

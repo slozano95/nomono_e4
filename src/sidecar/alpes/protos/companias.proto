@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "co.edu.uniandes.misw4406";
+option java_outer_classname = "CompaniasProto";
+option objc_class_prefix = "VUE";
+
+package companias;
+
+// ------------------------------
+// Servicios
+// ------------------------------
+
+service Companias {
+  rpc CrearCompania (Compania) returns (RespuestaCompania) {}
+}
+
+// ------------------------------
+// Entidades
+// ------------------------------
+
+message Compania {
+    string id = 1;
+    string nombre = 2;
+}
+
+message RespuestaCompania {
+    string mensaje = 1;
+    optional Compania compania = 2;
+}

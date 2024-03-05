@@ -22,7 +22,8 @@ def comenzar_consumidor():
     threading.Thread(target=compania.suscribirse_a_comandos).start()
     import alpes.modulos.notifier.infraestructura.consumidores as notifier
     threading.Thread(target=notifier.suscribirse_a_eventos).start()
-
+    import alpes.modulos.audit.infraestructura.consumidores as audit
+    threading.Thread(target=audit.suscribirse_a_eventos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask

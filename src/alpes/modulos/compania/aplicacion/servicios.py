@@ -40,3 +40,4 @@ class ServicioCreacionCompania(Servicio):
         despachador = Despachador()
         dto = EventoCompaniaCreada(data=CompaniaCreadaPayload(id=id))
         despachador.publicar_evento(dto, 'eventos-notifier')
+        despachador.publicar_evento(dto, 'eventos-audit')

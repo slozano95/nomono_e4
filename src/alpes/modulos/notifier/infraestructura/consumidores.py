@@ -13,9 +13,9 @@ def suscribirse_a_eventos():
         consumidor = cliente.subscribe('eventos-notifier', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='eventos', schema=AvroSchema(EventoCompaniaCreada))
         logging.info('OK: Suscribiendose al tópico de eventos notifier!')
         while True:
-            print(f'Evento compania creada recibido')
+            print(f'Evento compania creada notifier recibido')
             mensaje = consumidor.receive()
-            print(f'Evento compania recibido: {mensaje.value().data}')
+            print(f'Evento compania creada notifier recibido: {mensaje.value().data}')
 
             consumidor.acknowledge(mensaje)     
 

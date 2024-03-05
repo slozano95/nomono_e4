@@ -2,11 +2,12 @@ import logging
 import traceback
 from alpes.seedwork.infraestructura import utils
 from alpes.modulos.compania.infraestructura.schema.v1.eventos import EventoCompaniaCreada
-
 import pulsar,_pulsar
 from pulsar.schema import *
-
+from dataclasses import dataclass, field
 from alpes.modulos.contratos.infraestructura.schema.v1.eventos import EventoContratoCreado
+from alpes.modulos.compania.aplicacion.comandos.registrar_compania import RegistrarCompania
+from alpes.seedwork.aplicacion.comandos import ejecutar_commando
 
 def suscribirse_a_eventos():
     cliente = None
@@ -19,6 +20,10 @@ def suscribirse_a_eventos():
             mensaje = consumidor.receive()
             print(f'Payload recibido: {mensaje.value().data}')
             consumidor.acknowledge(mensaje)
+            #EJECUTAR CREACION DE LA COMPANIA
+            comando = RegistrarCompania(id=mensaje.value().data.id, nombre=mensaje.value().data.compania)
+            ejecutar_commando(comando)
+            
         cliente.close()
     except:
         logging.error('ERROR: Suscribiendose al tópico de eventos compania!')

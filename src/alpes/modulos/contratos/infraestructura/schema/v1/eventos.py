@@ -7,3 +7,9 @@ class ContratoCreadoPayload(Record):
 
 class EventoContratoCreado(EventoIntegracion):
     data = ContratoCreadoPayload()
+
+class CompaniaCreadaPayload(Record):
+    compania = String()
+
+class EventoCompaniaCreada(EventoIntegracion):
+    data = CompaniaCreadaPayload()

@@ -2,6 +2,8 @@ from alpes.seedwork.aplicacion.servicios import Servicio
 from alpes.seedwork.infraestructura.uow import UnidadTrabajoPuerto
 from alpes.modulos.compania.infraestructura.fabricas import FabricaCompanias, FabricaRepositorio
 from alpes.modulos.compania.dominio.repositorios import RepositorioCompania
+from alpes.modulos.compania.infraestructura.despachadores import Despachador
+from alpes.modulos.compania.infraestructura.schema.v1.eventos import CompaniaCreadaPayload, EventoCompaniaCreada
 from .mapeadores import  MapeadorCreacionRepo
 from alpes.modulos.compania.dominio.entidades import Compania
 
@@ -27,9 +29,14 @@ class ServicioCreacionCompania(Servicio):
         data.crear_compania(data)
 
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioCompania.__class__)
-
+        self.notificar_creacion_compania(id=dto.id)
         UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, data)
         UnidadTrabajoPuerto.savepoint()
         UnidadTrabajoPuerto.commit()
 
         return dto
+    
+    def notificar_creacion_compania(self, id):
+        despachador = Despachador()
+        dto = EventoCompaniaCreada(data=CompaniaCreadaPayload(id=id))
+        despachador.publicar_evento(dto, 'eventos-notifier')

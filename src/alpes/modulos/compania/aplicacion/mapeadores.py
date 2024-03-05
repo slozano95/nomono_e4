@@ -3,6 +3,7 @@ from alpes.seedwork.dominio.repositorios import Mapeador as RepMap
 from alpes.modulos.compania.dominio.entidades import Compania
 from alpes.seedwork.aplicacion.dto import DTO
 from alpes.modulos.compania.infraestructura.dto import CompaniaModel
+from alpes.modulos.contratos.aplicacion.comandos.registrar_compania import RegistrarCompania
 from .dto import CreacionCompaniaDTO
 from datetime import datetime
 
@@ -13,6 +14,10 @@ class MapeadorCreacion(AppMap):
     
     def dto_a_externo(self, dto: DTO) -> dict:
         return dto.__dict__
+    
+    def externo_comando_a_dto(self, dto: RegistrarCompania) -> CreacionCompaniaDTO:
+        dto = CreacionCompaniaDTO(dto.id, dto.nombre)
+        return dto
 
 class MapeadorCreacionRepo(RepMap):
     

@@ -9,17 +9,26 @@ Leidy Beltran:
 
 # Intrucciones
 
-#Correr flask (api que procesa los guardados) 
+#Correr flask (api que procesa los guardados)
+
 flask --app src/alpes/api --debug run --port 5000
+
 flask --app src/auditoria/api --debug run --port 5001
+
 flask --app src/contratos/api --debug run --port 5002
 
 
-#Correr pulsar docker-compose --profile pulsar up
+#Correr pulsar
 
-#Correr sidecar servidor para recibir comando rpc python src/sidecar/main.py
+docker-compose --profile pulsar up
 
-#Enviar comando por grpc python src/sidecar/cliente.py
+#Correr sidecar servidor para recibir comando rpc 
+
+python src/sidecar/main.py
+
+#Enviar comando por grpc 
+
+python src/sidecar/cliente.py
 
 #Recibir mensajes desde pulsar (topico de eventos)
 

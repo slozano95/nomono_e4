@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
-from alpes.seedwork.dominio.repositorios import Mapeador, Repositorio
-from alpes.seedwork.dominio.fabricas import Fabrica
-from alpes.seedwork.dominio.repositorios import Repositorio
-from alpes.modulos.compania.infraestructura.repositorios import RepositorioCompaniasSQL
+from auditoria.seedwork.dominio.repositorios import Mapeador, Repositorio
+from auditoria.seedwork.dominio.fabricas import Fabrica
+from auditoria.seedwork.dominio.repositorios import Repositorio
+from auditoria.modulos.audit.infraestructura.repositorios import RepositorioCompaniasSQL
 
 @dataclass
-class FabricaCompanias(Fabrica):
+class FabricaAuditoria(Fabrica):
     def crear_objeto(self, obj: any, mapeador: Mapeador) -> any:
         compania = mapeador.dto_a_entidad(obj)
         return compania

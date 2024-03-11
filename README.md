@@ -9,7 +9,11 @@ Leidy Beltran:
 
 # Intrucciones
 
-#Correr flask (api que procesa los guardados) flask --app src/alpes/api --debug run
+#Correr flask (api que procesa los guardados) 
+flask --app src/alpes/api --debug run --port 5000
+flask --app src/auditoria/api --debug run --port 5001
+flask --app src/contratos/api --debug run --port 5002
+
 
 #Correr pulsar docker-compose --profile pulsar up
 

@@ -11,7 +11,6 @@ def registrar_handlers():
     
 
 def importar_modelos_alchemy():
-    import contratos.modulos.compania.infraestructura.dto
     import contratos.modulos.contratos.infraestructura.dto
 
 def comenzar_consumidor():
@@ -22,8 +21,6 @@ def comenzar_consumidor():
     threading.Thread(target=compania.suscribirse_a_comandos).start()
     import alpes.modulos.notifier.infraestructura.consumidores as notifier
     threading.Thread(target=notifier.suscribirse_a_eventos).start()
-    import alpes.modulos.audit.infraestructura.consumidores as audit
-    threading.Thread(target=audit.suscribirse_a_eventos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask
@@ -52,11 +49,7 @@ def create_app(configuracion={}):
             comenzar_consumidor()
 
      # Importa Blueprints
-    from . import auditoria
     from . import contratos
-
-    # Registro de Blueprints
-    app.register_blueprint(auditoria.bp)
     app.register_blueprint(contratos.bp)
 
     @app.route("/spec")

@@ -31,7 +31,7 @@ def create_app(configuracion={}):
     app.secret_key = '9d58f98f-3ae8-4149-a09f-3a8c2012e32c'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.config['TESTING'] = configuracion.get('TESTING')
-
+    
      # Inicializa la DB
     from auditoria.config.db import init_db
     init_db(app)

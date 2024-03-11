@@ -1,28 +1,28 @@
 
-from alpes.config.db import db
-from alpes.modulos.compania.dominio.entidades import Compania
-from alpes.modulos.compania.dominio.repositorios import RepositorioCompania
+from auditoria.config.db import db
+from auditoria.modulos.audit.dominio.entidades import Auditoria
+from auditoria.modulos.audit.dominio.repositorios import RepositorioAuditoria
 from uuid import UUID
-from alpes.modulos.compania.aplicacion.mapeadores import MapeadorCreacionRepo
+from auditoria.modulos.audit.aplicacion.mapeadores import MapeadorCreacionAuditoriaRepo
 
-class RepositorioCompaniasSQL(RepositorioCompania):
+class RepositorioCompaniasSQL(RepositorioAuditoria):
 
     def __init__(self):
         pass
         
     
-    def obtener_por_id(self, id: UUID) -> Compania:
+    def obtener_por_id(self, id: UUID) -> Auditoria:
         # TODO
         raise NotImplementedError
 
-    def obtener_todos(self) -> list[Compania]:
+    def obtener_todos(self) -> list[Auditoria]:
         return []
 
-    def agregar(self, entity: Compania):
-        dto = MapeadorCreacionRepo().entidad_a_dto(entidad=entity)
+    def agregar(self, entity: Auditoria):
+        dto = MapeadorCreacionAuditoriaRepo().entidad_a_dto(entidad=entity)
         db.session.add(dto)
 
-    def actualizar(self, entity: Compania):
+    def actualizar(self, entity: Auditoria):
         # TODO
         raise NotImplementedError
 

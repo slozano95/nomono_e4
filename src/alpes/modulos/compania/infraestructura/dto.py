@@ -1,10 +1,3 @@
-"""DTOs para la capa de infrastructura del dominio
-
-En este archivo usted encontrará los DTOs (modelos anémicos) de
-la infraestructura del dominio
-
-"""
-
 from alpes.config.db import db
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, ForeignKey, Integer, Table

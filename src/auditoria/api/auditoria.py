@@ -2,8 +2,8 @@ import json
 import auditoria.seedwork.presentacion.api as api
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
-from auditoria.modulos.audit.aplicacion.mapeadores import MapeadorCreacion
-from auditoria.modulos.audit.aplicacion.servicios import ServicioCreacionCompania
+from auditoria.modulos.audit.aplicacion.mapeadores import MapeadorAuditoriaContrato
+from auditoria.modulos.audit.aplicacion.servicios import ServicioCreacionAuditoria
 from auditoria.seedwork.dominio.excepciones import ExcepcionDominio
 
 bp = api.crear_blueprint('auditoria', '/auditoria')
@@ -12,10 +12,10 @@ def crear():
     try:
         dict = request.json
 
-        mapper = MapeadorCreacion()
+        mapper = MapeadorAuditoriaContrato()
         dto = mapper.externo_a_dto(dict)
-        sr = ServicioCreacionCompania()
-        dto_final = sr.crear_compania(dto)
+        sr = ServicioCreacionAuditoria()
+        dto_final = sr.crear_auditoria(dto)
         return mapper.dto_a_externo(dto_final)
     
     except ExcepcionDominio as e:

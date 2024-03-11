@@ -1,7 +1,7 @@
 import logging
 import traceback
 from alpes.seedwork.infraestructura import utils
-from alpes.modulos.contratos.infraestructura.schema.v1.eventos import EventoCompaniaCreada, EventoContratoCreado
+from contratos.modulos.contratos.infraestructura.schema.v1.eventos import EventoCompaniaCreada, EventoContratoCreado
 
 import pulsar,_pulsar
 from pulsar.schema import *

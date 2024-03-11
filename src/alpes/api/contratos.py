@@ -2,8 +2,8 @@ import json
 import alpes.seedwork.presentacion.api as api
 from flask import request
 from flask import Response
-from alpes.modulos.contratos.aplicacion.mapeadores import MapeadorCreacionContrato
-from alpes.modulos.contratos.aplicacion.servicios import ServicioCreacionContrato
+from contratos.modulos.contratos.aplicacion.mapeadores import MapeadorCreacionContrato
+from contratos.modulos.contratos.aplicacion.servicios import ServicioCreacionContrato
 from alpes.seedwork.dominio.excepciones import ExcepcionDominio
 
 bp = api.crear_blueprint('contratos', '/contratos')

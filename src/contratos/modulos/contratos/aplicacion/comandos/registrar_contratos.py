@@ -4,6 +4,11 @@ from contratos.seedwork.aplicacion import comandos
 from contratos.seedwork.aplicacion.comandos import ejecutar_commando as comando
 
 @dataclass
+class RegistrarCompania(Comando):
+    id: str
+    nombre: str
+
+@dataclass
 class RegistrarContrato(Comando):
     id: str
     nombre: str

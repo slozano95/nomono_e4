@@ -7,12 +7,12 @@ from flask_swagger import swagger
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def registrar_handlers():
-    import alpes.modulos.compania.aplicacion
+    pass
     
 
 def importar_modelos_alchemy():
+    
     import alpes.modulos.compania.infraestructura.dto
-    import alpes.modulos.contratos.infraestructura.dto
 
 def comenzar_consumidor():
 
@@ -22,8 +22,8 @@ def comenzar_consumidor():
     threading.Thread(target=compania.suscribirse_a_comandos).start()
     import alpes.modulos.notifier.infraestructura.consumidores as notifier
     threading.Thread(target=notifier.suscribirse_a_eventos).start()
-    import alpes.modulos.audit.infraestructura.consumidores as audit
-    threading.Thread(target=audit.suscribirse_a_eventos).start()
+    # import alpes.modulos.audit.infraestructura.consumidores as audit
+    # threading.Thread(target=audit.suscribirse_a_eventos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask

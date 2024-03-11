@@ -15,9 +15,23 @@ class RegistrarContrato(Comando):
 
 class RegistrarContratoHandler(ComandoHandler):
     def handle(self, comando: Comando):
-        return super().handle(comando)
+        pass
 
 @comando.register(RegistrarContrato)
-def ejecutar_comando_crear_reserva(comando: RegistrarContrato):
+def ejecutar_comando_crear_contrato(comando: RegistrarContrato):
     handler = RegistrarContratoHandler()
+    handler.handle(comando)
+
+@dataclass
+class EliminarContrato(Comando):
+    id: str
+    nombre: str
+
+class EliminarContratoHandler(ComandoHandler):
+    def handle(self, comando: Comando):
+        pass
+
+@comando.register(RegistrarContrato)
+def ejecutar_comando_eliminar_contrato(comando: EliminarContrato):
+    handler = EliminarContratoHandler()
     handler.handle(comando)

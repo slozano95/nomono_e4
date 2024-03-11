@@ -1,5 +1,5 @@
 from pulsar.schema import *
-from alpes.seedwork.infraestructura.schema.v1.eventos import EventoIntegracion
+from contratos.seedwork.infraestructura.schema.v1.eventos import EventoIntegracion
 
 class ContratoCreadoPayload(Record):
     id = String()

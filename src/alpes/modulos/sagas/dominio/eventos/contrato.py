@@ -13,3 +13,13 @@ class EventoCliente(EventoDominio):
 class CompaniaCreada(EventoCompaniaCreada):
     id: uuid.UUID = None
     nombre: string = None
+
+@dataclass
+class AuditoriaCreada(EventoCompaniaCreada):
+    id: uuid.UUID = None
+    nombre: string = None
+
+@dataclass
+class CreacionAuditoriaFallida(EventoCompaniaCreada):
+    id: uuid.UUID = None
+    nombre: string = None

@@ -11,6 +11,10 @@ class RegistrarCompania(Comando):
     id: str
     nombre: str
 
+@dataclass
+class EliminarCompania(Comando):
+    id: str
+
 class RegistrarCompaniaHandler(ComandoHandler):
     def handle(self, comando: Comando):
         print(comando)
@@ -19,8 +23,16 @@ class RegistrarCompaniaHandler(ComandoHandler):
         sr = ServicioCreacionCompania()
         sr.notificar_creacion_compania(dto.id)
         
+class EliminarCompaniaHandler(ComandoHandler):
+    def handle(self, comando: Comando):
+        pass
 
 @comando.register(RegistrarCompania)
 def ejecutar_comando_crear_reserva(comando: RegistrarCompania):
+    handler = RegistrarCompaniaHandler()
+    handler.handle(comando)
+                   
+@comando.register(EliminarCompania)
+def ejecutar_comando_eliminar_reserva(comando: EliminarCompaniaHandler):
     handler = RegistrarCompaniaHandler()
     handler.handle(comando)

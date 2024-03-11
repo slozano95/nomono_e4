@@ -8,3 +8,6 @@ class ContratoCreado(EventoDominio):
     id: uuid.UUID = None
     compania: str = ""
     
+@dataclass
+class CreacionContratoFallida(ContratoCreado):
+    id: uuid.UUID = None

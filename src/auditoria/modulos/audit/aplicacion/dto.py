@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from alpes.seedwork.aplicacion.dto import DTO
+from auditoria.seedwork.aplicacion.dto import DTO
 
 @dataclass(frozen=True)
 class CreacionAuditoriaDTO(DTO):

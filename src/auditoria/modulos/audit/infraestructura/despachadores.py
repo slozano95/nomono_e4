@@ -2,7 +2,7 @@ import pulsar
 from pulsar.schema import *
 
 from alpes.modulos.compania.infraestructura.schema.v1.eventos import EventoCompaniaCreada, CompaniaCreadaPayload
-from alpes.seedwork.infraestructura import utils
+from auditoria.seedwork.infraestructura import utils
 
 import datetime
 

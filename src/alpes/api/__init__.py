@@ -50,7 +50,8 @@ def create_app(configuracion={}):
         db.create_all()
         if not app.config.get('TESTING'):
             comenzar_consumidor()
-
+        from alpes.modulos.sagas.aplicacion.coordinadores.saga_contratos import CoordinadorReservas
+        CoordinadorReservas()
      # Importa Blueprints
     from . import compania
     from . import contratos

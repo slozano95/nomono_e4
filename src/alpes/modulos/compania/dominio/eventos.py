@@ -8,3 +8,6 @@ from datetime import datetime
 class CompaniaCreada(EventoDominio):
     id: uuid.UUID = None
     
+@dataclass
+class CreacionCompaniaFallida(EventoDominio):
+    id: uuid.UUID = None

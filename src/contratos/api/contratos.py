@@ -15,7 +15,7 @@ def crear():
         mapper = MapeadorCreacionContrato()
         dto = mapper.externo_a_dto(dict)
         sr = ServicioCreacionContrato()
-        dto_final = sr.crear_compania(dto)
+        dto_final = sr.crear_contrato(dto)
         return mapper.dto_a_externo(dto_final)
     
     except ExcepcionDominio as e:

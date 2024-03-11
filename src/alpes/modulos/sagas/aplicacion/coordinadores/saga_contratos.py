@@ -1,3 +1,4 @@
+from alpes.modulos.compania.aplicacion.comandos.registrar_compania import EliminarCompania, RegistrarCompania
 from alpes.seedwork.aplicacion.sagas import CoordinadorOrquestacion, Transaccion, Inicio, Fin
 from alpes.seedwork.aplicacion.comandos import Comando
 from alpes.seedwork.dominio.eventos import EventoDominio
@@ -5,36 +6,31 @@ from alpes.seedwork.dominio.eventos import EventoDominio
 from alpes.modulos.sagas.aplicacion.comandos.cliente import RegistrarUsuario, ValidarUsuario
 from alpes.modulos.sagas.aplicacion.comandos.pagos import PagarReserva, RevertirPago
 from alpes.modulos.sagas.aplicacion.comandos.gds import ConfirmarReserva, RevertirConfirmacion
-from alpes.modulos.vuelos.aplicacion.comandos.crear_reserva import CrearReserva
-from alpes.modulos.vuelos.aplicacion.comandos.aprobar_reserva import AprobarReserva
-from alpes.modulos.vuelos.aplicacion.comandos.cancelar_reserva import CancelarReserva
-from alpes.modulos.vuelos.dominio.eventos.reservas import ReservaCreada, ReservaCancelada, ReservaAprobada, CreacionReservaFallida, AprobacionReservaFallida
-from alpes.modulos.sagas.dominio.eventos.pagos import ReservaPagada, PagoRevertido
-from alpes.modulos.sagas.dominio.eventos.gds import ReservaGDSConfirmada, ConfirmacionGDSRevertida, ConfirmacionFallida
-
+from alpes.modulos.sagas.dominio.eventos.contrato import AuditoriaCreada, CompaniaCreada, CreacionAuditoriaFallida
+from alpes.modulos.compania.dominio.eventos import CompaniaCreada, CreacionCompaniaFallida
+from auditoria.modulos.audit.aplicacion.comandos.registrar import EliminarAuditoria, RegistrarAuditoria
+from contratos.modulos.contratos.aplicacion.comandos.registrar_contratos import EliminarContrato, RegistrarContrato
+from contratos.modulos.contratos.dominio.eventos import ContratoCreado, CreacionContratoFallida
 
 class CoordinadorReservas(CoordinadorOrquestacion):
 
     def inicializar_pasos(self):
         self.pasos = [
             Inicio(index=0),
-            Transaccion(index=1, comando=CrearReserva, evento=ReservaCreada, error=CreacionReservaFallida, compensacion=CancelarReserva),
-            Transaccion(index=2, comando=PagarReserva, evento=ReservaPagada, error=PagoFallido, compensacion=RevertirPago),
-            Transaccion(index=3, comando=ConfirmarReserva, evento=ReservaGDSConfirmada, error=ConfirmacionFallida, compensacion=ConfirmacionGDSRevertida),
-            Transaccion(index=4, comando=AprobarReserva, evento=ReservaAprobada, error=AprobacionReservaFallida, compensacion=CancelarReserva),
-            Fin(index=5)
+            Transaccion(index=1, comando=RegistrarCompania, evento=CompaniaCreada, error=CreacionCompaniaFallida, compensacion=EliminarCompania),
+            Transaccion(index=2, comando=RegistrarAuditoria, evento=AuditoriaCreada , error=CreacionAuditoriaFallida, compensacion=EliminarAuditoria),
+            Transaccion(index=3, comando=RegistrarContrato, evento=ContratoCreado, error=CreacionContratoFallida, compensacion=EliminarContrato),
+            Fin(index=4)
         ]
 
     def iniciar(self):
         self.persistir_en_saga_log(self.pasos[0])
     
-    def terminar():
+    def terminar(self):
         self.persistir_en_saga_log(self.pasos[-1])
 
     def persistir_en_saga_log(self, mensaje):
-        # TODO Persistir estado en DB
-        # Probablemente usted podría usar un repositorio para ello
-        ...
+        print(mensaje)
 
     def construir_comando(self, evento: EventoDominio, tipo_comando: type):
         # TODO Transforma un evento en la entrada de un comando

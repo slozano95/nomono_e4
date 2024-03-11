@@ -15,12 +15,10 @@ def importar_modelos_alchemy():
 
 def comenzar_consumidor():
 
-    import threading    
-    import alpes.modulos.compania.infraestructura.consumidores as compania
+    import threading
+    import contratos.modulos.contratos.infraestructura.consumidores as compania
     threading.Thread(target=compania.suscribirse_a_eventos).start()
     threading.Thread(target=compania.suscribirse_a_comandos).start()
-    import alpes.modulos.notifier.infraestructura.consumidores as notifier
-    threading.Thread(target=notifier.suscribirse_a_eventos).start()
 
 def create_app(configuracion={}):
     # Init la aplicacion de Flask
@@ -35,10 +33,10 @@ def create_app(configuracion={}):
     app.config['TESTING'] = configuracion.get('TESTING')
 
      # Inicializa la DB
-    from alpes.config.db import init_db
+    from contratos.config.db import init_db
     init_db(app)
 
-    from alpes.config.db import db
+    from contratos.config.db import db
 
     importar_modelos_alchemy()
     registrar_handlers()

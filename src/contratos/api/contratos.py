@@ -1,5 +1,5 @@
 import json
-import auditoria.seedwork.presentacion.api as api
+import contratos.seedwork.presentacion.api as api
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
 from contratos.modulos.contratos.aplicacion.mapeadores import MapeadorCreacionContrato

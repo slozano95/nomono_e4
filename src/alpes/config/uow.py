@@ -1,7 +1,7 @@
 from alpes.config.db import db
 from alpes.seedwork.infraestructura.uow import UnidadTrabajo, Batch
 
-class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
+class UnidadTrabajoSQLAlchemyCompania(UnidadTrabajo):
 
     def __init__(self):
         self._batches: list[Batch] = list()

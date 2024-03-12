@@ -1,4 +1,4 @@
-from alpes.config.db import db
+from contratos.config.db import db
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import Column, ForeignKey, Integer, Table
 

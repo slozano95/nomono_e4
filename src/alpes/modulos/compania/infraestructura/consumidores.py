@@ -5,7 +5,6 @@ from alpes.modulos.compania.infraestructura.schema.v1.eventos import EventoCompa
 import pulsar,_pulsar
 from pulsar.schema import *
 from dataclasses import dataclass, field
-from contratos.modulos.contratos.infraestructura.schema.v1.eventos import EventoContratoCreado
 from alpes.modulos.compania.aplicacion.comandos.registrar_compania import RegistrarCompania
 from alpes.seedwork.aplicacion.comandos import ejecutar_commando
 

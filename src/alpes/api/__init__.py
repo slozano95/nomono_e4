@@ -52,14 +52,12 @@ def create_app(configuracion={}):
             comenzar_consumidor()
         from alpes.modulos.sagas.aplicacion.coordinadores.saga_contratos import CoordinadorReservas
         CoordinadorReservas()
+        
      # Importa Blueprints
     from . import compania
-    from . import contratos
 
     # Registro de Blueprints
     app.register_blueprint(compania.bp)
-    app.register_blueprint(contratos.bp)
-
     @app.route("/spec")
     def spec():
         swag = swagger(app)

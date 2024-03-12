@@ -3,8 +3,7 @@ from alpes.seedwork.dominio.repositorios import Mapeador as RepMap
 from alpes.modulos.compania.dominio.entidades import Compania
 from alpes.seedwork.aplicacion.dto import DTO
 from alpes.modulos.compania.infraestructura.dto import CompaniaModel
-from contratos.modulos.contratos.aplicacion.comandos.registrar_contratos import RegistrarCompania
-from .dto import CreacionCompaniaDTO
+from alpes.modulos.compania.aplicacion.dto import CreacionCompaniaDTO, RegistrarCompania
 from datetime import datetime
 
 class MapeadorCreacion(AppMap):
